@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Radio Jukebox</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script type="text/javascript" src="playback.js" ></script>
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay"></div>
+			<div id="main">
+				<!-- Header -->
+					<header id="header">
+						<h1>Radio Jukebox</h1>
+						<p>
+							<a id="paradise" onclick="loadStream(0)" style="cursor:pointer"> Paradise  </a>&nbsp;&bull;&nbsp;
+							<a id="paradise" onclick="loadStream(1)" style="cursor:pointer">  Dance   </a>&nbsp;&bull;&nbsp;
+							<a id="paradise" onclick="loadStream(2)" style="cursor:pointer">  Folk  </a>&nbsp;&bull;&nbsp;
+							<a id="paradise" onclick="loadStream(3)" style="cursor:pointer">  Punk </a>
+						</p>
+						<nav>
+							<ul>
+								<li><a id="playbackButton" href="#" class="icon fa-play" onclick="changePlayback()"><span class="label">Music</span></a></li>
+							</ul>
+						</nav>
+						<div id="label">
+							
+						</div>
+					</header>
+			</div>
+		</div>
+		<script>
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
+</html>
