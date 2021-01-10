@@ -1,20 +1,20 @@
-var sources = [
+const sources = [
   "http://stream-dc1.radioparadise.com/aac-320", // paradise
-  "http://mp3.radiogong963.c.nmdn.net/fs_radiogongchannel5/livestream.mp3", // party gong
+  "http://radiogong-ais-edge-3073-fra-eco-cdn.cast.addradio.de/radiogong/live/mp3/high?ar-distributor=f0b7&aw_0_req.gdpr=true&_art=dj0yJmlwPTYyLjU3LjIuMjcmaWQ9aWNzY3hsLXMzeGRnenhtYiZ0PTE2MTAzODM3MDcmcz03ODY2ZjI5YyNiNzcwYWViOGUxZWU0NWI2MWJlNTAzZWE4OWUyZjQwYw", // party gong
   "http://ice2.somafm.com/folkfwd-128-mp3", // folk forward
-  "http://46.28.49.164:7508/stream?1489669793611" // punk fm
+  "http://94.23.26.22:8090/live.mp3" // punk fm
 ];
 
-var labels = [
+const labels = [
   [ "Radio Paradise", "https://www.radioparadise.com" ],
   [ "Party Gong", "https://www.radiogong.de/"],
   [ "SomaFM Folk Forward", "http://somafm.com/folkfwd/"],
   [ "Punk FM", " http://www.punkfm.co.uk/"]
 ];
 
-var playingIndex = 0; // current radio
-var playing = true; // stream status
-var music = null;
+let playingIndex = 0; // current radio
+let playing = true; // stream status
+let music = null;
 
 setTimeout(function(){
     loadStream(playingIndex);
