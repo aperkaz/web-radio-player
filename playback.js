@@ -16,8 +16,8 @@ let playingIndex = 0; // current radio
 let playing = false; // stream status
 let music = null;
 
-function loadStream(index){
-  if(playing && music !== null)
+function loadStream(index) {
+  if (playing && music !== null)
     destroyStream();
 
   music = new Audio();
@@ -25,39 +25,62 @@ function loadStream(index){
   music.load();
   music.play();
   setLabel(index);
-  pauseIcon();
+  showPauseIcon();
   playingIndex = index;
   playing = true;
 }
 
-function destroyStream(){
+function destroyStream() {
   music.pause();
   music.src = "";
-  playIcon();
+  showPlayIcon();
   playing = false;
 }
 
-function changePlayback(){
-  if(playing){ destroyStream();  }else{  loadStream(playingIndex);  }
+function changePlayback() {
+  if (playing) { destroyStream(); } else { loadStream(playingIndex); }
 }
 
-function setLabel(index){
-  document.getElementById("label").innerHTML = '<h6> <a target="_blank" href="' + labels[index][1] + '">' + labels[index][0] + '</a></h6>';
+function setLabel(index) {
+  const labelEl = document.getElementById("label");
+  labelEl.textContent = "";
+  const h6 = document.createElement("h6");
+  const a = document.createElement("a");
+  a.target = "_blank";
+  a.href = labels[index][1];
+  a.textContent = labels[index][0];
+  h6.appendChild(a);
+  labelEl.appendChild(h6);
 }
 
-document.onkeydown = function(e) {
-  e = e || window.event;
-  switch(e.which || e.keyCode) {
-    case 32:
-      changePlayback();
-    break;
+document.addEventListener("keydown", function(e) {
+  if (e.key === " ") {
+    e.preventDefault();
+    changePlayback();
   }
-};
+});
+
+// Station click handlers
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll("[data-station]").forEach(function(el) {
+    el.addEventListener("click", function() {
+      loadStream(parseInt(this.dataset.station, 10));
+    });
+  });
+
+  document.getElementById("playbackButton").addEventListener("click", function(e) {
+    e.preventDefault();
+    changePlayback();
+  });
+});
 
 // icons
-function pauseIcon(){
-  document.getElementById('playbackButton').className = 'icon fa-pause';
+function showPauseIcon() {
+  document.getElementById("playIcon").style.display = "none";
+  document.getElementById("pauseIcon").style.display = "";
 }
-function playIcon(){
-  document.getElementById('playbackButton').className = 'icon fa-play';
+
+function showPlayIcon() {
+  document.getElementById("playIcon").style.display = "";
+  document.getElementById("pauseIcon").style.display = "none";
 }
