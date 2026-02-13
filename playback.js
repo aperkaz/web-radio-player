@@ -1,24 +1,20 @@
 const sources = [
-  "http://stream-dc1.radioparadise.com/aac-320", // paradise
-  "http://radiogong-ais-edge-3073-fra-eco-cdn.cast.addradio.de/radiogong/live/mp3/high?ar-distributor=f0b7&aw_0_req.gdpr=true&_art=dj0yJmlwPTYyLjU3LjIuMjcmaWQ9aWNzY3hsLXMzeGRnenhtYiZ0PTE2MTAzODM3MDcmcz03ODY2ZjI5YyNiNzcwYWViOGUxZWU0NWI2MWJlNTAzZWE4OWUyZjQwYw", // party gong
-  "http://ice2.somafm.com/folkfwd-128-mp3", // folk forward
-  "http://94.23.26.22:8090/live.mp3" // punk fm
+  "https://stream-dc1.radioparadise.com/aac-320", // paradise
+  "https://radiogong-channel05.cast.addradio.de/radiogong/channel05/mp3/high?ar-distributor=f0b7", // party gong
+  "https://ice2.somafm.com/folkfwd-128-mp3", // folk forward
+  "https://ice2.somafm.com/u80s-128-mp3" // underground 80s
 ];
 
 const labels = [
   [ "Radio Paradise", "https://www.radioparadise.com" ],
   [ "Party Gong", "https://www.radiogong.de/"],
-  [ "SomaFM Folk Forward", "http://somafm.com/folkfwd/"],
-  [ "Punk FM", " http://www.punkfm.co.uk/"]
+  [ "SomaFM Folk Forward", "https://somafm.com/folkfwd/"],
+  [ "SomaFM Underground 80s", "https://somafm.com/u80s/"]
 ];
 
 let playingIndex = 0; // current radio
-let playing = true; // stream status
+let playing = false; // stream status
 let music = null;
-
-setTimeout(function(){
-    loadStream(playingIndex);
-}, 1);
 
 function loadStream(index){
   if(playing && music !== null)
